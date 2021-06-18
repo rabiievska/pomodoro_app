@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "description": "A Hello World extension",
   "icons": {
-    "128": "icon128.png",
-    "48": "icon48.png",
-    "16": "icon16.png"
+    "128": "assets/images/icon128.png",
+    "48": "assets/images/icon48.png",
+    "16": "assets/images/icon16.png"
   },
   "browser_action": {
-    "default_icon": "icon16.png",
-    "default_popup": "popup.html"
+    "default_icon": "assets/images/icon16.png",
+    "default_popup": "index.html"
   }
 }
