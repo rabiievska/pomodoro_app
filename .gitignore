@@ -1,3 +1,4 @@
 .sass-cache
 styles/css
 .DS_Store
+node_modules
