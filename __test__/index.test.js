@@ -1,4 +1,4 @@
-import { practiceTest } from "../src/practice_test";
+import { practiceTest } from "../src/practiceTest";
 
 describe("Test for initial Jest setup.", () => {
   describe("practiceTest", () => {
