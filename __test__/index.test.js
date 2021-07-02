@@ -1,4 +1,4 @@
-const { practiceTest } = require("../src/index");
+import { practiceTest } from "../src/practice_test";
 
 describe("Test for initial Jest setup.", () => {
   describe("practiceTest", () => {
