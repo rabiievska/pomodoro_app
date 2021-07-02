@@ -5,6 +5,7 @@
   "repository": "https://github.com/rabiievska/pomodoro_app.git",
   "author": "Tetiana Rabiievska <tetiana@careerfoundry.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "babel src -d lib",
     "test": "jest"
