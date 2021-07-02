@@ -1,3 +1,3 @@
-export const practiceTest = (phrase) => {
+const practiceTest = (phrase) => {
   return phrase + "!";
 }
