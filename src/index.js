@@ -1,11 +1,9 @@
 window.addEventListener("load", function () {
-  
+
   const pomodoroTimer = document.querySelector('#pomodoro-timer');
   const startButton = document.querySelector('#pomodoro-start');
   const pauseButton = document.querySelector('#pomodoro-pause');
   const stopButton = document.querySelector('#pomodoro-stop');
-
-  let isClockRunning = false;
 
   // in seconds = 25 mins
   let workSessionDuration = 1500;
@@ -13,53 +11,20 @@ window.addEventListener("load", function () {
   // in seconds = 5 mins;
   let breakSessionDuration = 300;
 
-  // // START
-  // startButton.addEventListener('click', () => {
-  //   toggleClock();
-  // });
+  // START
+  startButton.addEventListener('click', () => {
+    setInterval(() => {
+      const secondsLeft = currentTimeLeftInSession--;
 
-  // // PAUSE
-  // pauseButton.addEventListener('click', () => {
-  //   toggleClock();
-  // });
+      const seconds = secondsLeft % 60;
+      const minutes = parseInt(secondsLeft / 60) % 60;
 
-  // // STOP
-  // stopButton.addEventListener('click', () => {
-  //   toggleClock(true);
-  // });
+      function addLeadingZeroes(time) {
+        return time < 10 ? `0${time}` : time;
+      }
+      result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
+      pomodoroTimer.innerText = result.toString();
+    }, 1000);
+  });
 
-  // const toggleClock = (reset) => {
-  //   if (reset) {
-  //     // STOP THE TIMER
-  //   } else {
-  //     if (isClockRunning === true) {
-  //       // PAUSE THE TIMER
-  //       clearInterval(clockTimer);
-  //       isClockRunning = false;
-  //     } else {
-  //       // START THE TIMER
-  //       clockTimer = setInterval(() => {
-  //         // decrease time left / increase time spent
-  //         currentTimeLeftInSession -= 1;
-  //       }, 1000);
-  //       isClockRunning = true;
-  //     }
-  //   }
-  // };
-
-  
-
-  setInterval(() => {
-    const secondsLeft = currentTimeLeftInSession--;
-
-    const seconds = secondsLeft % 60;
-    const minutes = parseInt(secondsLeft / 60) % 60;
-
-    function addLeadingZeroes(time) {
-      return time < 10 ? `0${time}` : time;
-    }
-    result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
-    pomodoroTimer.innerText = result.toString();
-  }, 1000);
-  
 });
