@@ -7,14 +7,30 @@ window.addEventListener("load", function () {
 
   // in seconds = 25 mins
   let workSessionDuration = 1500;
-  let currentTimeLeftInSession = 1500;
   // in seconds = 5 mins;
   let breakSessionDuration = 300;
 
   // START
   startButton.addEventListener('click', () => {
-    setInterval(() => {
-      const secondsLeft = currentTimeLeftInSession--;
+    startWorkTimer = setInterval(() => {
+      const secondsLeft = workSessionDuration--;
+
+      const seconds = secondsLeft % 60;
+      const minutes = parseInt(secondsLeft / 60) % 60;
+
+      function addLeadingZeroes(time) {
+        return time < 10 ? `0${time}` : time;
+      }
+      result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
+      pomodoroTimer.innerText = result.toString();
+    }, 1000);
+  });
+
+  // STOP
+  stopButton.addEventListener('click', () => {
+    startPauseTimer = setInterval(() => {
+      clearInterval(startTimer);
+      const secondsLeft = breakSessionDuration--;
 
       const seconds = secondsLeft % 60;
       const minutes = parseInt(secondsLeft / 60) % 60;
