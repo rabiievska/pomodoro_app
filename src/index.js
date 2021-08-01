@@ -16,43 +16,37 @@ window.addEventListener("load", function () {
   // in seconds = 5 mins;
   let breakSessionDuration = 300;
 
-  
+  // START
+  startButton.addEventListener('click', () => {
+    toggleClock();
+  });
 
-  // // START
-  // startButton.addEventListener('click', () => {
-  //   toggleClock();
-  // });
+  // PAUSE
+  pauseButton.addEventListener('click', () => {
+    toggleClock();
+  });
 
-  // // PAUSE
-  // pauseButton.addEventListener('click', () => {
-  //   toggleClock();
-  // });
+  // STOP
+  stopButton.addEventListener('click', () => {
+    toggleClock(true);
+  });
 
-  // // STOP
-  // stopButton.addEventListener('click', () => {
-  //   toggleClock(true);
-  // });
-
-  // const toggleClock = (reset) => {
-  //   if (reset) {
-  //     // STOP THE TIMER
-  //   } else {
-  //     if (isClockRunning === true) {
-  //       // PAUSE THE TIMER
-  //       isClockRunning = false;
-  //     } else {
-  //       // START THE TIMER
-  //       clockTimer = setInterval(() => {
-  //         // decrease time left / increase time spent
-  //         currentTimeLeftInSession -= 1;
-  //       }, 1000);
-  //       isClockRunning = true;
-  //     }
-  //   }
-  // };
-
-  setInterval(() => {
-    const tick = currentTimeLeftInSession -= 1;
-    pomodoroTimer.innerText = tick;
-  }, 1000);
+  const toggleClock = (reset) => {
+    if (reset) {
+      // STOP THE TIMER
+    } else {
+      if (isClockRunning === true) {
+        // PAUSE THE TIMER
+        clearInterval(clockTimer);
+        isClockRunning = false;
+      } else {
+        // START THE TIMER
+        clockTimer = setInterval(() => {
+          // decrease time left / increase time spent
+          currentTimeLeftInSession -= 1;
+        }, 1000);
+        isClockRunning = true;
+      }
+    }
+  };
 });
