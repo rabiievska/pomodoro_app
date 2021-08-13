@@ -29,7 +29,7 @@ window.addEventListener("load", function () {
   // STOP
   stopButton.addEventListener('click', () => {
     startPauseTimer = setInterval(() => {
-      clearInterval(startTimer);
+      clearInterval(startWorkTimer);
       const secondsLeft = breakSessionDuration--;
 
       const seconds = secondsLeft % 60;
