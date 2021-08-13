@@ -31,7 +31,27 @@ window.addEventListener("load", function () {
   let countdownTimer = setInterval(() => {
     currentTimeLeftInSession--;
     displayCurrentTime();
-  }, 1000)  
+  }, 1000)
+
+  const toggleTimer = (reset) => {
+    if (reset) {
+      stopTimer();
+    } else {
+      if (isTimerRunning === true) {
+        
+        isTimerRunning = false
+      } else {
+        isTimerRunning = true
+      }
+    }
+  };
+
+  const stopTimer = () => {
+    clearInterval(countdownTimer);
+    isTimerRunning = false;
+    currentTimerSession = workSessionDuration;
+    displayCurrentTimeLeftInSession();
+  };
 
   // START
   startButton.addEventListener('click', () => {
