@@ -18,6 +18,15 @@ window.addEventListener("load", function () {
 
   let timeSpentInCurrentSession = 0;
 
+  let updatedWorkSessionDuration;
+  let updatedBreakSessionDuration;
+  let workDurationInput = document.querySelector('#input-work-duration');
+  let breakDurationInput = document.querySelector('#input-break-duration');
+  workDurationInput.value = '25';
+  breakDurationInput.value = '5';
+
+  type = type === 'Work' ? 'Break' : 'Work';
+
   const displayCurrentTime = () => {
     const secondsLeft = currentTimerSession;
     let result = ''
@@ -79,55 +88,50 @@ window.addEventListener("load", function () {
   };
 
   const stopTimer = () => {
-    timeSpentInCurrentSession = 0;
+    displaySessionLog(type);
     clearInterval(countdownTimer);
     isTimerRunning = false;
     currentTimerSession = workSessionDuration;
     displayCurrentTime();
+    type = 'Work';
   };
 
-  // //START
-  // startButton.addEventListener('click', () => {
-  //   startWorkTimer = setInterval(() => {
-  //     const secondsLeft = currentTimerSession--;
+  const displaySessionLog = (type) => {
+    const sessionsList = document.querySelector('#pomodoro-sessions');
+    const li = document.createElement('li');
+    let sessionLabel = type;
+    let elapsedTime = parseInt(timeSpentInCurrentSession / 60);
+    elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
+    const text = document.createTextNode(`${sessionLabel} : ${elapsedTime} min`);
+    li.appendChild(text);
+    sessionsList.appendChild(li);
+  }
 
-  //     const seconds = secondsLeft % 60;
-  //     const minutes = parseInt(secondsLeft / 60) % 60;
+  //START
+  startButton.addEventListener('click', () => {
+    toggleTimer();
+  });
 
-  //     function addLeadingZeroes(time) {
-  //       return time < 10 ? `0${time}` : time;
-  //     }
-  //     result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
-  //     pomodoroTimer.innerText = result.toString();
-  //     isTimerRunning = true;
-  //   }, 1000);
-  // });
+  // STOP
+  stopButton.addEventListener('click', () => {
+    toggleTimer(true);
+  });
 
-  // // STOP
-  // stopButton.addEventListener('click', () => {
-  //   currentTimerSession = breakSessionDuration;
-  //   startPauseTimer = setInterval(() => {
-  //     clearInterval(startWorkTimer);
-  //     const secondsLeft = breakSessionDuration--;
+  // PAUSE
+  pauseButton.addEventListener('click', () => {
+    toggleTimer();
+  });
 
-  //     const seconds = secondsLeft % 60;
-  //     const minutes = parseInt(secondsLeft / 60) % 60;
+  workDurationInput.addEventListener('input', () => {
+    updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value)
+  });
 
-  //     function addLeadingZeroes(time) {
-  //       return time < 10 ? `0${time}` : time;
-  //     }
-  //     result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
-  //     pomodoroTimer.innerText = result.toString();
-  //     isTimerRunning = true;
-  //   }, 1000);
-  // });
+  breakDurationInput.addEventListener('input', () => {
+    updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value)
+  });
 
-  // // PAUSE
-  // pauseButton.addEventListener('click', () => {
-  //   pauseTimer = () => {
-  //     isTimerRunning = false;
-  //     clearInterval(currentTimerSession);
-  //   }
-  // });
+  const minuteToSeconds = (mins) => {
+    return mins * 60
+  };
 
 });
