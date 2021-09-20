@@ -14,6 +14,8 @@ window.addEventListener("load", function () {
 
   let isTimerRunning = false;
 
+  let type = 'Work';
+
   const displayCurrentTime = () => {
     const secondsLeft = currentTimerSession;
     let result = ''
@@ -34,7 +36,7 @@ window.addEventListener("load", function () {
   };
 
   let countdownTimer = setInterval(() => {
-    currentTimeLeftInSession--;
+    stepDown();
     displayCurrentTime();
   }, 1000)
 
@@ -55,12 +57,29 @@ window.addEventListener("load", function () {
     }
   };
 
-  const stopTimer = () => {
-    clearInterval(countdownTimer);
-    isTimerRunning = false;
-    currentTimerSession = workSessionDuration;
-    displayCurrentTimeLeftInSession();
+  const stepDown = () => {
+    if (currentTimerSession > 0) {
+      currentTimerSession--;
+    } else if (currentTimerSession === 0) {
+      if (type === 'Work') {
+        currentTimerSession = breakSessionDuration;
+        displaySessionLog('Work');
+        type = 'Break';
+      } else {
+        currentTimerSession = workSessionDuration;
+        type = 'Work';
+        displaySessionLog('Break');
+      }
+    }
+    displayCurrentTime();
   };
+
+  // const stopTimer = () => {
+  //   clearInterval(countdownTimer);
+  //   isTimerRunning = false;
+  //   currentTimerSession = workSessionDuration;
+  //   displayCurrentTimeLeftInSession();
+  // };
 
   // //START
   // startButton.addEventListener('click', () => {
