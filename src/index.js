@@ -16,13 +16,18 @@ window.addEventListener("load", function () {
 
   const displayCurrentTime = () => {
     const secondsLeft = currentTimerSession;
+    let result = ''
 
     const seconds = secondsLeft % 60;
     const minutes = parseInt(secondsLeft / 60) % 60;
 
+    let hours = parseInt(secondsLeft / 3600);
+
     function addLeadingZeroes(time) {
       return time < 10 ? `0${time}` : time;
     }
+
+    if (hours > 0) result += `${hours}:`
 
     result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
     pomodoroTimer.innerText = result.toString();
@@ -35,13 +40,17 @@ window.addEventListener("load", function () {
 
   const toggleTimer = (reset) => {
     if (reset) {
+      // STOP THE TIMER
       stopTimer();
     } else {
       if (isTimerRunning === true) {
-        
-        isTimerRunning = false
+         // PAUSE THE TIMER
+        isTimerRunning = false;
+        clearInterval(countdownTimer);
       } else {
-        isTimerRunning = true
+        // START THE TIMER
+        isTimerRunning = true;
+        countdownTimer();
       }
     }
   };
@@ -53,7 +62,7 @@ window.addEventListener("load", function () {
     displayCurrentTimeLeftInSession();
   };
 
-  // START
+  // //START
   // startButton.addEventListener('click', () => {
   //   startWorkTimer = setInterval(() => {
   //     const secondsLeft = currentTimerSession--;
