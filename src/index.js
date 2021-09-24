@@ -2,7 +2,6 @@ window.addEventListener("load", function () {
 
   const pomodoroTimer = document.querySelector('#pomodoro-timer');
   const startButton = document.querySelector('#pomodoro-start');
-  const pauseButton = document.querySelector('#pomodoro-pause');
   const stopButton = document.querySelector('#pomodoro-stop');
 
   // in seconds = 25 mins
@@ -53,6 +52,7 @@ window.addEventListener("load", function () {
   }, 1000)
 
   const toggleTimer = (reset) => {
+    togglePlayPauseIcon(reset);
     if (reset) {
       // STOP THE TIMER
       stopTimer();
@@ -73,6 +73,7 @@ window.addEventListener("load", function () {
         }, 1000)
         isTimerRunning = true;
       }
+      showStopIcon();
     }
   };
 
@@ -128,11 +129,6 @@ window.addEventListener("load", function () {
     toggleTimer(true);
   });
 
-  // PAUSE
-  pauseButton.addEventListener('click', () => {
-    toggleTimer();
-  });
-
   workDurationInput.addEventListener('input', () => {
     updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value);
   });
@@ -154,5 +150,28 @@ window.addEventListener("load", function () {
       workSessionDuration = currentTimerSession;
     }
   };
+
+  const togglePlayPauseIcon = (reset) => {
+    const playIcon = document.querySelector('#play-icon');
+    const pauseIcon = document.querySelector('#pause-icon');
+    if (reset) {
+      // when resetting -> always revert to play icon
+      if (playIcon.classList.contains('hidden')) {
+        playIcon.classList.remove('hidden');
+      }
+      if (!pauseIcon.classList.contains('hidden')) {
+        pauseIcon.classList.add('hidden');
+      }
+    } else {
+      playIcon.classList.toggle('hidden');
+      pauseIcon.classList.toggle('hidden');
+    }
+  };
+
+  const showStopIcon = () => {
+    const stopButton = document.querySelector('#pomodoro-stop');
+    stopButton.classList.remove('hidden');
+  };
+  
 
 });
