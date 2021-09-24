@@ -1,3 +1,5 @@
+// For compilation scss in css run 'sass --watch styles/scss/main.scss:styles/css/index.css'
+
 h2 {
   color: orange;
 }
@@ -15,5 +17,5 @@ input:focus {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
