@@ -13,6 +13,7 @@ window.addEventListener("load", function () {
   let currentTimerSession = 1500;
 
   let isTimerRunning = false;
+  let isTimerStopped = true;
 
   let type = 'Work';
 
@@ -56,14 +57,21 @@ window.addEventListener("load", function () {
       // STOP THE TIMER
       stopTimer();
     } else {
+      if (isTimerStopped) {
+        setUpdatedTimers();
+        isTimerStopped = false;
+      }
       if (isTimerRunning === true) {
          // PAUSE THE TIMER
-        isTimerRunning = false;
-        clearInterval(countdownTimer);
+         clearInterval(countdownTimer);
+         isTimerRunning = false;
       } else {
         // START THE TIMER
+        clockTimer = setInterval(() => {
+          stepDown();
+          displayCurrentTime();
+        }, 1000)
         isTimerRunning = true;
-        countdownTimer();
       }
     }
   };
@@ -88,12 +96,15 @@ window.addEventListener("load", function () {
   };
 
   const stopTimer = () => {
+    setUpdatedTimers();
     displaySessionLog(type);
     clearInterval(countdownTimer);
+    isTimerStopped = true;
     isTimerRunning = false;
     currentTimerSession = workSessionDuration;
     displayCurrentTime();
     type = 'Work';
+    timeSpentInCurrentSession = 0;
   };
 
   const displaySessionLog = (type) => {
@@ -123,15 +134,25 @@ window.addEventListener("load", function () {
   });
 
   workDurationInput.addEventListener('input', () => {
-    updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value)
+    updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value);
   });
 
   breakDurationInput.addEventListener('input', () => {
-    updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value)
+    updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value);
   });
 
   const minuteToSeconds = (mins) => {
-    return mins * 60
+    return mins * 60;
+  };
+
+  const setUpdatedTimers = () => {
+    if (type === 'Work') {
+      currentTimerSession = updatedWorkSessionDuration ? updatedWorkSessionDuration : workSessionDuration;
+      workSessionDuration = currentTimerSession;
+    } else {
+      currentTimerSession = updatedBreakSessionDuration ? updatedBreakSessionDuration : breakSessionDuration;
+      workSessionDuration = currentTimerSession;
+    }
   };
 
 });
