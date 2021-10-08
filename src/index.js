@@ -1,3 +1,5 @@
+import {stepDown} from './stepDown';
+
 window.addEventListener("load", function () {
 
   const pomodoroTimer = document.querySelector('#pomodoro-timer');
@@ -25,7 +27,7 @@ window.addEventListener("load", function () {
   workDurationInput.value = '25';
   breakDurationInput.value = '5';
 
-  type = type === 'Work' ? 'Break' : 'Work';
+  // type = type === 'Work' ? 'Break' : 'Work';
 
   const displayCurrentTime = () => {
     const secondsLeft = currentTimerSession;
@@ -47,7 +49,7 @@ window.addEventListener("load", function () {
   };
 
   let countdownTimer = setInterval(() => {
-    stepDown();
+    // stepDown();
     displayCurrentTime();
   }, 1000)
 
@@ -68,7 +70,7 @@ window.addEventListener("load", function () {
       } else {
         // START THE TIMER
         clockTimer = setInterval(() => {
-          stepDown();
+          stepDown(currentTimerSession, timeSpentInCurrentSession, type, displaySessionLog);
           displayCurrentTime();
         }, 1000)
         isTimerRunning = true;
@@ -77,24 +79,7 @@ window.addEventListener("load", function () {
     }
   };
 
-  const stepDown = () => {
-    if (currentTimerSession > 0) {
-      currentTimerSession--;
-      timeSpentInCurrentSession++;
-    } else if (currentTimerSession === 0) {
-      timeSpentInCurrentSession = 0;
-      if (type === 'Work') {
-        currentTimerSession = breakSessionDuration;
-        displaySessionLog('Work');
-        type = 'Break';
-      } else {
-        currentTimerSession = workSessionDuration;
-        type = 'Work';
-        displaySessionLog('Break');
-      }
-    }
-    displayCurrentTime();
-  };
+  
 
   const stopTimer = () => {
     setUpdatedTimers();
