@@ -1,4 +1,5 @@
-const displayCurrentTime = (pomodoroTimer) => {
+export const displayCurrentTime = (currentTimerSession) => {
+  const pomodoroTimer = document.querySelector('#pomodoro-timer');
   const secondsLeft = currentTimerSession;
   let result = ''
 
@@ -16,5 +17,3 @@ const displayCurrentTime = (pomodoroTimer) => {
   result = `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
   pomodoroTimer.innerText = result.toString();
 };
-
-export default displayCurrentTime;

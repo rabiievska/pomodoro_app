@@ -1,4 +1,6 @@
-const stepDown = (currentTimerSession, timeSpentInCurrentSession, type, displaySessionLog) => {
+import { displayCurrentTime } from './displayCurrentTime.js';
+
+export const stepDown = (currentTimerSession, timeSpentInCurrentSession, type, displaySessionLog, workSessionDuration) => {
   if (currentTimerSession > 0) {
     currentTimerSession--;
     timeSpentInCurrentSession++;
@@ -14,7 +16,9 @@ const stepDown = (currentTimerSession, timeSpentInCurrentSession, type, displayS
       displaySessionLog('Break');
     }
   }
-  displayCurrentTime();
+  displayCurrentTime(currentTimerSession);
+  return {
+    currentTimerSession,
+    timeSpentInCurrentSession
+  }
 };
-
-export default stepDown;
