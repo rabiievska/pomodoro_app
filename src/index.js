@@ -2,6 +2,7 @@ import { displayCurrentTime } from './displayCurrentTime.js';
 import { toggleTimer } from './toggleTimer.js';
 import { displaySessionLog } from './displaySessionLog.js';
 import { showStopIcon } from './showStopIcon.js';
+import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 
 window.addEventListener("load", function () {
 
@@ -49,12 +50,12 @@ window.addEventListener("load", function () {
 
   //START
   startButton.addEventListener('click', () => {
-    toggleTimer(true, togglePlayPauseIcon, stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
+    toggleTimer(true, togglePlayPauseIcon(reset), stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   // STOP
   stopButton.addEventListener('click', () => {
-    toggleTimer(true, togglePlayPauseIcon, stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
+    toggleTimer(true, togglePlayPauseIcon(reset), stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   workDurationInput.addEventListener('input', () => {
@@ -76,23 +77,6 @@ window.addEventListener("load", function () {
     } else {
       currentTimerSession = updatedBreakSessionDuration ? updatedBreakSessionDuration : breakSessionDuration;
       workSessionDuration = currentTimerSession;
-    }
-  };
-
-  const togglePlayPauseIcon = (reset) => {
-    const playIcon = document.querySelector('#play-icon');
-    const pauseIcon = document.querySelector('#pause-icon');
-    if (reset) {
-      // when resetting -> always revert to play icon
-      if (playIcon.classList.contains('hidden')) {
-        playIcon.classList.remove('hidden');
-      }
-      if (!pauseIcon.classList.contains('hidden')) {
-        pauseIcon.classList.add('hidden');
-      }
-    } else {
-      playIcon.classList.toggle('hidden');
-      pauseIcon.classList.toggle('hidden');
     }
   };
 });
