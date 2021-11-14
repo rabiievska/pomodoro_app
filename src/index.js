@@ -3,6 +3,7 @@ import { toggleTimer } from './toggleTimer.js';
 import { displaySessionLog } from './displaySessionLog.js';
 import { showStopIcon } from './showStopIcon.js';
 import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
+import { minuteToSeconds } from './minuteToSeconds.js';
 
 window.addEventListener("load", function () {
 
@@ -65,10 +66,6 @@ window.addEventListener("load", function () {
   breakDurationInput.addEventListener('input', () => {
     updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value);
   });
-
-  const minuteToSeconds = (mins) => {
-    return mins * 60;
-  };
 
   const setUpdatedTimers = () => {
     if (type === 'Work') {
