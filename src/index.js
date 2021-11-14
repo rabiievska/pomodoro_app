@@ -1,6 +1,7 @@
 import { displayCurrentTime } from './displayCurrentTime.js';
 import { toggleTimer } from './toggleTimer.js';
 import { displaySessionLog } from './displaySessionLog.js';
+import { showStopIcon } from './showStopIcon.js';
 
 window.addEventListener("load", function () {
 
@@ -94,11 +95,4 @@ window.addEventListener("load", function () {
       pauseIcon.classList.toggle('hidden');
     }
   };
-
-  const showStopIcon = () => {
-    const stopButton = document.querySelector('#pomodoro-stop');
-    stopButton.classList.remove('hidden');
-  };
-  
-
 });
