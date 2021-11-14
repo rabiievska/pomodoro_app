@@ -1,5 +1,5 @@
-import { stepDown } from './stepDown.js';
 import { displayCurrentTime } from './displayCurrentTime.js';
+import { toggleTimer } from './toggleTimer.js';
 
 window.addEventListener("load", function () {
 
@@ -33,32 +33,6 @@ window.addEventListener("load", function () {
     displayCurrentTime(currentTimerSession);
   }, 1000)
 
-  const toggleTimer = (reset) => {
-    togglePlayPauseIcon(reset);
-    if (reset) {
-      // STOP THE TIMER
-      stopTimer();
-    } else {
-      if (isTimerStopped) {
-        setUpdatedTimers();
-        isTimerStopped = false;
-      }
-      if (isTimerRunning === true) {
-         // PAUSE THE TIMER
-         clearInterval(countdownTimer);
-         isTimerRunning = false;
-      } else {
-        // START THE TIMER
-        countdownTimer = setInterval(() => {
-          ({ currentTimerSession, timeSpentInCurrentSession } = stepDown(currentTimerSession, timeSpentInCurrentSession, type, displaySessionLog, workSessionDuration));
-          displayCurrentTime(currentTimerSession);
-        }, 1000)
-        isTimerRunning = true;
-      }
-      showStopIcon();
-    }
-  };
-
   const stopTimer = () => {
     setUpdatedTimers();
     displaySessionLog(type);
@@ -84,12 +58,12 @@ window.addEventListener("load", function () {
 
   //START
   startButton.addEventListener('click', () => {
-    toggleTimer();
+    toggleTimer(true, togglePlayPauseIcon, stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   // STOP
   stopButton.addEventListener('click', () => {
-    toggleTimer(true);
+    toggleTimer(true, togglePlayPauseIcon, stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   workDurationInput.addEventListener('input', () => {
