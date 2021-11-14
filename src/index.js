@@ -4,6 +4,7 @@ import { displaySessionLog } from './displaySessionLog.js';
 import { showStopIcon } from './showStopIcon.js';
 import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 import { minuteToSeconds } from './minuteToSeconds.js';
+import { countdownTimer } from './countdownTimer.js';
 
 window.addEventListener("load", function () {
 
@@ -32,10 +33,6 @@ window.addEventListener("load", function () {
   breakDurationInput.value = '5';
 
   // type = type === 'Work' ? 'Break' : 'Work';
-
-  let countdownTimer = setInterval(() => {
-    displayCurrentTime(currentTimerSession);
-  }, 1000)
 
   const stopTimer = () => {
     setUpdatedTimers();
