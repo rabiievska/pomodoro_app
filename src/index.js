@@ -1,5 +1,6 @@
 import { displayCurrentTime } from './displayCurrentTime.js';
 import { toggleTimer } from './toggleTimer.js';
+import { displaySessionLog } from './displaySessionLog.js';
 
 window.addEventListener("load", function () {
 
@@ -44,17 +45,6 @@ window.addEventListener("load", function () {
     type = 'Work';
     timeSpentInCurrentSession = 0;
   };
-
-  const displaySessionLog = (type) => {
-    const sessionsList = document.querySelector('#pomodoro-sessions');
-    const li = document.createElement('li');
-    let sessionLabel = type;
-    let elapsedTime = parseInt(timeSpentInCurrentSession / 60);
-    elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
-    const text = document.createTextNode(`${sessionLabel} : ${elapsedTime} min`);
-    li.appendChild(text);
-    sessionsList.appendChild(li);
-  }
 
   //START
   startButton.addEventListener('click', () => {
