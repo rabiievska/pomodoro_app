@@ -5,6 +5,7 @@ import { showStopIcon } from './showStopIcon.js';
 import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 import { minuteToSeconds } from './minuteToSeconds.js';
 import { countdownTimer } from './countdownTimer.js';
+import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js'
 
 window.addEventListener("load", function () {
 
