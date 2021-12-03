@@ -1,5 +1,8 @@
 import { displayCurrentTime } from './displayCurrentTime.js';
 
-export let countdownTimer = setInterval(() => {
-  displayCurrentTime(currentTimerSession);
-}, 1000);
+export let countdownTimer = (currentTimerSession) => {
+  setInterval(() => {
+    currentTimerSession--;
+    displayCurrentTime(currentTimerSession);
+  }, 1000);
+};
