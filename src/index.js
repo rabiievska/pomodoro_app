@@ -12,15 +12,11 @@ window.addEventListener("load", function () {
   const startButton = document.querySelector('#pomodoro-start');
   const stopButton = document.querySelector('#pomodoro-stop');
 
-  // in seconds = 25 mins
-  let workSessionDuration = 1500;
-  // in seconds = 5 mins;
-  let breakSessionDuration = 300;
-
-  let currentTimerSession = 1500;
+  let workSessionDuration = WORK_SESSION_DURATION;
+  let breakSessionDuration = BREAK_SESSION_DURATION;
+  let currentTimerSession = WORK_SESSION_DURATION;
 
   let isTimerRunning = false;
-  let isTimerStopped = true;
 
   let type = 'Work';
 
@@ -39,7 +35,6 @@ window.addEventListener("load", function () {
     setUpdatedTimers();
     displaySessionLog(type);
     clearInterval(countdownTimer);
-    isTimerStopped = true;
     isTimerRunning = false;
     currentTimerSession = workSessionDuration;
     displayCurrentTime(currentTimerSession);
@@ -49,12 +44,12 @@ window.addEventListener("load", function () {
 
   //START
   startButton.addEventListener('click', () => {
-    toggleTimer(true, togglePlayPauseIcon(reset), stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
+    toggleTimer(true, togglePlayPauseIcon, stopTimer, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   // STOP
   stopButton.addEventListener('click', () => {
-    toggleTimer(true, togglePlayPauseIcon(reset), stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
+    toggleTimer(true, togglePlayPauseIcon, stopTimer, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
   });
 
   workDurationInput.addEventListener('input', () => {

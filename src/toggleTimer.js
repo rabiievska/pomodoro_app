@@ -1,17 +1,17 @@
 import { stepDown } from './stepDown.js';
 import { displayCurrentTime } from './displayCurrentTime.js';
 
-export const toggleTimer = (reset, togglePlayPauseIcon, stopTimer, isTimerStopped, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon) => {
+export const toggleTimer = (reset, togglePlayPauseIcon, stopTimer, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon) => {
   togglePlayPauseIcon(reset);
   if (reset) {
     // STOP THE TIMER
     stopTimer();
   } else {
-    if (isTimerStopped) {
+    if (!isTimerRunning) {
       setUpdatedTimers();
-      isTimerStopped = false;
+      isTimerRunning = true;
     }
-    if (isTimerRunning === true) {
+    if (isTimerRunning) {
        // PAUSE THE TIMER
        clearInterval(countdownTimer);
        isTimerRunning = false;
