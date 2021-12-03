@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "compile": "webpack ./src/index.js --watch & sass --watch styles/scss/main.scss:styles/css/index.css",
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack ./src/index.js && sass styles/scss/main.scss:styles/css/index.css"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
