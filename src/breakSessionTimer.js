@@ -1,5 +1,5 @@
 import { countdownTimer } from './countdownTimer.js';
 
-export const workSessionTimer = (breakSessionDuration) => {
+export const breakSessionTimer = (breakSessionDuration) => {
   countdownTimer(breakSessionDuration);
 };

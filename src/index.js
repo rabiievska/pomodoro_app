@@ -8,6 +8,7 @@ import { displayCurrentTime } from './displayCurrentTime.js';
 import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
 import { workSessionTimer } from './workSessionTimer.js';
 import { stopCurrentTimer } from "./stopCurrentTimer.js";
+import { breakSessionTimer } from "./breakSessionTimer.js";
 
 window.addEventListener("load", function () {
 
