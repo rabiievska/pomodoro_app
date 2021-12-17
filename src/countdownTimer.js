@@ -5,9 +5,8 @@ export let countdownTimer = (currentTimerSession) => {
   console.log(currentTimerSession);
   setInterval(() => {
     if (currentTimerSession >= 0) {
-      currentTimerSession--;
-
       displayCurrentTime(currentTimerSession);
+      currentTimerSession--;
     } else {
       stopCurrentTimer(); 
     }
