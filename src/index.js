@@ -4,11 +4,11 @@
 // import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 // import { minuteToSeconds } from './minuteToSeconds.js';
 // import { countdownTimer } from './countdownTimer.js';
-import { displayCurrentTime } from './displayCurrentTime.js';
+// import { displayCurrentTime } from './displayCurrentTime.js';
 import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
 import { workSessionTimer } from './workSessionTimer.js';
-import { stopCurrentTimer } from "./stopCurrentTimer.js";
-import { breakSessionTimer } from "./breakSessionTimer.js";
+import { stopCurrentTimer } from './stopCurrentTimer.js';
+import { breakSessionTimer } from './breakSessionTimer.js';
 
 window.addEventListener("load", function () {
 
@@ -17,9 +17,8 @@ window.addEventListener("load", function () {
 
   let workSessionDuration = WORK_SESSION_DURATION;
   let breakSessionDuration = BREAK_SESSION_DURATION;
-  let currentTimerSession = WORK_SESSION_DURATION;
 
-  let isWorkingTimer = true;
+  let currentTimerSession = workSessionDuration;
 
   startButton.addEventListener('click', () => {
     currentTimerSession = workSessionDuration;
@@ -28,7 +27,7 @@ window.addEventListener("load", function () {
   });
 
   stopButton.addEventListener('click', () => {
-    stopCurrentTimer(currentTimerSession, isWorkingTimer);
+    stopCurrentTimer();
     currentTimerSession = breakSessionDuration;
     breakSessionTimer(breakSessionDuration);
     stopButton.classList.add('hidden');
