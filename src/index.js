@@ -14,6 +14,7 @@ window.addEventListener("load", function () {
 
   const startButton = document.querySelector('#pomodoro-start');
   const stopButton = document.querySelector('#pomodoro-stop');
+  const pauseButton = document.querySelector('#pomodoro-pause');
 
   let workSessionDuration = WORK_SESSION_DURATION;
   let breakSessionDuration = BREAK_SESSION_DURATION;
@@ -25,6 +26,8 @@ window.addEventListener("load", function () {
     currentTimerSession = workSessionDuration;
     workSessionTimer(workSessionDuration);
     stopButton.classList.remove('hidden');
+    pauseButton.classList.remove('hidden');
+    startButton.classList.add('hidden');
   });
 
   stopButton.addEventListener('click', () => {
@@ -33,6 +36,7 @@ window.addEventListener("load", function () {
     currentTimerSession = breakSessionDuration;
     breakSessionTimer(breakSessionDuration);
     stopButton.classList.add('hidden');
+    pauseButton.classList.add('hidden');
   })
 
 
