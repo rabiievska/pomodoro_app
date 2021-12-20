@@ -1,6 +1,5 @@
 // import { toggleTimer } from './toggleTimer.js';
 // import { showStopIcon } from './showStopIcon.js';
-// import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 // import { minuteToSeconds } from './minuteToSeconds.js';
 // import { countdownTimer } from './countdownTimer.js';
 // import { displayCurrentTime } from './displayCurrentTime.js';
@@ -37,6 +36,13 @@ window.addEventListener("load", function () {
     breakSessionTimer(breakSessionDuration);
     stopButton.classList.add('hidden');
     pauseButton.classList.add('hidden');
+    startButton.classList.remove('hidden');
+  })
+
+  pauseButton.addEventListener('click', () => {
+    pauseButton.classList.add('hidden');
+    startButton.classList.remove('hidden');
+    stopButton.classList.remove('hidden');
   })
 
 
