@@ -1,10 +1,10 @@
 // import { toggleTimer } from './toggleTimer.js';
-// import { displaySessionLog } from './displaySessionLog.js';
 // import { showStopIcon } from './showStopIcon.js';
 // import { togglePlayPauseIcon } from './togglePlayPauseIcon.js';
 // import { minuteToSeconds } from './minuteToSeconds.js';
 // import { countdownTimer } from './countdownTimer.js';
 // import { displayCurrentTime } from './displayCurrentTime.js';
+import { displaySessionLog } from './displaySessionLog.js';
 import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
 import { workSessionTimer } from './workSessionTimer.js';
 import { stopCurrentTimer } from './stopCurrentTimer.js';
@@ -21,12 +21,14 @@ window.addEventListener("load", function () {
   let currentTimerSession = workSessionDuration;
 
   startButton.addEventListener('click', () => {
+    displaySessionLog();
     currentTimerSession = workSessionDuration;
     workSessionTimer(workSessionDuration);
     stopButton.classList.remove('hidden');
   });
 
   stopButton.addEventListener('click', () => {
+    displaySessionLog();
     stopCurrentTimer();
     currentTimerSession = breakSessionDuration;
     breakSessionTimer(breakSessionDuration);
