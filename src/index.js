@@ -3,7 +3,7 @@
 // import { minuteToSeconds } from './minuteToSeconds.js';
 // import { countdownTimer } from './countdownTimer.js';
 // import { displayCurrentTime } from './displayCurrentTime.js';
-import { displaySessionLog } from './displaySessionLog.js';
+// import { displaySessionLog } from './displaySessionLog.js';
 import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
 import { workSessionTimer } from './workSessionTimer.js';
 import { stopCurrentTimer } from './stopCurrentTimer.js';
@@ -20,8 +20,11 @@ window.addEventListener("load", function () {
 
   let currentTimerSession = workSessionDuration;
 
+  let isPaused = false;
+
   startButton.addEventListener('click', () => {
-    displaySessionLog();
+    // displaySessionLog();
+    stopCurrentTimer();
     currentTimerSession = workSessionDuration;
     workSessionTimer(workSessionDuration);
     stopButton.classList.remove('hidden');
@@ -30,7 +33,7 @@ window.addEventListener("load", function () {
   });
 
   stopButton.addEventListener('click', () => {
-    displaySessionLog();
+    // displaySessionLog();
     stopCurrentTimer();
     currentTimerSession = breakSessionDuration;
     breakSessionTimer(breakSessionDuration);
@@ -43,6 +46,9 @@ window.addEventListener("load", function () {
     pauseButton.classList.add('hidden');
     startButton.classList.remove('hidden');
     stopButton.classList.remove('hidden');
+    // displaySessionLog();
+    isPaused = true;
+    this.clearInterval(stopCurrentTimer);
   })
 
 

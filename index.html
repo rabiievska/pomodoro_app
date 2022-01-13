@@ -11,16 +11,20 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=The+Nautigal&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="pomodoro-container">
-      <h2>Pomodoro Timer</h2>
-      <div id="pomodoro-clock">
-        <div id="pomodoro-timer"></div>
+    <div id="pomodoro-container" class="pomodoro-container">
+      <div class="img-wrapper">
+        <h1>Pomodoro Timer</h1>
+        <img src="../pomodoro_app/assets/images/tomato.png" alt="tomato">
+      </div>
+      <div id="pomodoro-clock" class="pomodoro-clock">
+        <div id="pomodoro-timer" class="pomodoro-timer">20:00</div>
         <div id="pomodoro-clock-actions">
-          <button id="pomodoro-start">
-            <i class="fas fa-play" id="play-icon"></i>
-          </button>
+          <button id="pomodoro-start" class="pomodoro-start">START</button>
           <button id="pomodoro-pause" class="hidden">
             <i class="fas fa-pause" id="pause-icon"></i>
           </button>
@@ -28,7 +32,7 @@
             <i class="fas fa-stop"></i>
           </button>
         </div>
-        <div id="pomodoro-clock-actions">
+        <!-- <div id="pomodoro-clock-actions">
           <div class="pomodoro-input">
             <label>Work Duration</label>
             <input
@@ -45,11 +49,11 @@
               type="number"
             />
           </div>
-        </div>
-        <div id="pomodoro-info">
+        </div> -->
+        <!-- <div id="pomodoro-info">
           <h3>Your Sessions</h3>
           <ul id="pomodoro-sessions"></ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
