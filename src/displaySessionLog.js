@@ -9,3 +9,5 @@ export const displaySessionLog = () => {
   li.appendChild(text);
   sessionsList.appendChild(li);
 }
+
+// commit 3 after bug
