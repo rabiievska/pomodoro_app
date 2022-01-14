@@ -1,5 +1,5 @@
-window.isWorkingTimer = true;
+// window.isWorkingTimer = true;
 
-export const toggleIsWorkingTimer = () => {
-  window.isWorkingTimer = !window.isWorkingTimer;
-}
+// export const toggleIsWorkingTimer = () => {
+//   window.isWorkingTimer = !window.isWorkingTimer;
+// }

@@ -22,39 +22,35 @@
         <img src="../pomodoro_app/assets/images/tomato.png" alt="tomato">
       </div>
       <div id="pomodoro-clock" class="pomodoro-clock">
-        <div id="pomodoro-timer" class="pomodoro-timer">20:00</div>
+        <div id="pomodoro-status" class="pomodoro-status"></div>
+        <div id="timer-display" class="timer-display">25:00</div>
         <div id="pomodoro-clock-actions">
-          <button id="pomodoro-start" class="pomodoro-start">START</button>
-          <button id="pomodoro-pause" class="hidden">
-            <i class="fas fa-pause" id="pause-icon"></i>
-          </button>
-          <button id="pomodoro-stop" class="hidden">
-            <i class="fas fa-stop"></i>
-          </button>
+          <button id="start-btn" class="start-btn">START</button>
         </div>
-        <!-- <div id="pomodoro-clock-actions">
-          <div class="pomodoro-input">
-            <label>Work Duration</label>
-            <input
-              name="input-work-duration"
-              id="input-work-duration"
-              type="number"
-            />
-          </div>
-          <div class="pomodoro-input">
-            <label>Break Duration</label>
-            <input
-              name="input-break-duration"
-              id="input-break-duration"
-              type="number"
-            />
-          </div>
-        </div> -->
-        <!-- <div id="pomodoro-info">
-          <h3>Your Sessions</h3>
-          <ul id="pomodoro-sessions"></ul>
-        </div> -->
       </div>
+      <div id="pomodoro-clock-actions" class="pomodoro-clock-actions">
+        <div class="pomodoro-input">
+          <label>Work Duration</label>
+          <input
+            name="input-work-duration"
+            id="input-work-duration"
+            type="number"
+          />
+        </div>
+        <button id="reset-btn" class="reset-btn">RESET</button>
+        <div class="pomodoro-input">
+          <label>Break Duration</label>
+          <input
+            name="input-break-duration"
+            id="input-break-duration"
+            type="number"
+          />
+        </div>
+      </div>
+      <!-- <div id="pomodoro-info">
+        <h3>Your Sessions</h3>
+        <ul id="pomodoro-sessions"></ul>
+      </div> -->
     </div>
   </body>
 </html>

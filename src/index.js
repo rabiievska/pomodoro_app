@@ -1,129 +1,136 @@
-// import { toggleTimer } from './toggleTimer.js';
-// import { showStopIcon } from './showStopIcon.js';
-// import { minuteToSeconds } from './minuteToSeconds.js';
-// import { countdownTimer } from './countdownTimer.js';
-// import { displayCurrentTime } from './displayCurrentTime.js';
-// import { displaySessionLog } from './displaySessionLog.js';
-import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
-import { workSessionTimer } from './workSessionTimer.js';
-import { stopCurrentTimer } from './stopCurrentTimer.js';
-import { breakSessionTimer } from './breakSessionTimer.js';
 
 window.addEventListener("load", function () {
 
-  const startButton = document.querySelector('#pomodoro-start');
-  const stopButton = document.querySelector('#pomodoro-stop');
-  const pauseButton = document.querySelector('#pomodoro-pause');
+  let countdown = 0; // variable to set/clear intervals
+  let seconds = 1500; // seconds left on the clock
+  let workTime = 25;
+  let breakTime = 5;
+  let isBreak = true;
+  let isPaused = true;
 
-  let workSessionDuration = WORK_SESSION_DURATION;
-  let breakSessionDuration = BREAK_SESSION_DURATION;
+  const status = document.querySelector("#status");
+  const timerDisplay = document.querySelector("#timer-display");
+  const startBtn = document.querySelector("#start-btn");
+  const resetBtn = document.querySelector("#reset-btn");
 
-  let currentTimerSession = workSessionDuration;
-
-  let isPaused = false;
-
-  startButton.addEventListener('click', () => {
-    // displaySessionLog();
-    stopCurrentTimer();
-    currentTimerSession = workSessionDuration;
-    workSessionTimer(workSessionDuration);
-    stopButton.classList.remove('hidden');
-    pauseButton.classList.remove('hidden');
-    startButton.classList.add('hidden');
+  startBtn.addEventListener('click', () => {  
+    clearInterval(countdown);  
+    isPaused = !isPaused;  
+    if (!isPaused) {    
+      countdown = setInterval(timer, 1000);  
+    }
   });
 
-  stopButton.addEventListener('click', () => {
-    // displaySessionLog();
-    stopCurrentTimer();
-    currentTimerSession = breakSessionDuration;
-    breakSessionTimer(breakSessionDuration);
-    stopButton.classList.add('hidden');
-    pauseButton.classList.add('hidden');
-    startButton.classList.remove('hidden');
-  })
+  resetBtn.addEventListener('click', () => {  
+    clearInterval(countdown);  
+    seconds = workTime * 60;  
+    countdown = 0;  
+    isPaused = true;  
+    isBreak = true;
+  });
 
-  pauseButton.addEventListener('click', () => {
-    pauseButton.classList.add('hidden');
-    startButton.classList.remove('hidden');
-    stopButton.classList.remove('hidden');
-    // displaySessionLog();
-    isPaused = true;
-    this.clearInterval(stopCurrentTimer);
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let isTimerRunning = false;
-
-  // let type = 'Work';
-
-  // let timeSpentInCurrentSession = 0;
-
-  // let updatedWorkSessionDuration;
-  // let updatedBreakSessionDuration;
-  // let workDurationInput = document.querySelector('#input-work-duration');
-  // let breakDurationInput = document.querySelector('#input-break-duration');
-  // workDurationInput.value = '25';
-  // breakDurationInput.value = '5';
-
-  // // type = type === 'Work' ? 'Break' : 'Work';
-
-  // const stopTimer = () => {
-  //   setUpdatedTimers();
-  //   displaySessionLog(type);
-  //   clearInterval(countdownTimer);
-  //   isTimerRunning = false;
-  //   currentTimerSession = workSessionDuration;
-  //   displayCurrentTime(currentTimerSession);
-  //   type = 'Work';
-  //   timeSpentInCurrentSession = 0;
-  // };
-
-  // //START
-  // startButton.addEventListener('click', () => {
-  //   toggleTimer(true, togglePlayPauseIcon, stopTimer, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
-  // });
-
-  // // STOP
-  // stopButton.addEventListener('click', () => {
-  //   toggleTimer(true, togglePlayPauseIcon, stopTimer, setUpdatedTimers, isTimerRunning, countdownTimer, showStopIcon);
-  // });
-
-  // workDurationInput.addEventListener('input', () => {
-  //   updatedWorkSessionDuration = minuteToSeconds(workDurationInput.value);
-  // });
-
-  // breakDurationInput.addEventListener('input', () => {
-  //   updatedBreakSessionDuration = minuteToSeconds(breakDurationInput.value);
-  // });
-
-  // const setUpdatedTimers = () => {
-  //   if (type === 'Work') {
-  //     currentTimerSession = updatedWorkSessionDuration ? updatedWorkSessionDuration : workSessionDuration;
-  //     workSessionDuration = currentTimerSession;
-  //   } else {
-  //     currentTimerSession = updatedBreakSessionDuration ? updatedBreakSessionDuration : breakSessionDuration;
-  //     workSessionDuration = currentTimerSession;
-  //   }
-  // };
+  const timer = () => {  
+    seconds--;  
+    if (seconds < 0) {    
+      clearInterval(countdown);     
+      seconds = (isBreak ? breakTime : workTime) * 60;    
+      isBreak = !isBreak;
+      countdown = setInterval(timer, 1000);  
+    }
+  };
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // import { toggleTimer } from './toggleTimer.js';
+// // import { showStopIcon } from './showStopIcon.js';
+// // import { minuteToSeconds } from './minuteToSeconds.js';
+// // import { countdownTimer } from './countdownTimer.js';
+// // import { displayCurrentTime } from './displayCurrentTime.js';
+// // import { displaySessionLog } from './displaySessionLog.js';
+// import { WORK_SESSION_DURATION, BREAK_SESSION_DURATION } from './constants.js';
+// import { workSessionTimer } from './workSessionTimer.js';
+// import { stopCurrentTimer } from './stopCurrentTimer.js';
+// import { breakSessionTimer } from './breakSessionTimer.js';
+
+// window.addEventListener("load", function () {
+
+//   const startButton = document.querySelector('#pomodoro-start');
+//   const stopButton = document.querySelector('#pomodoro-stop');
+//   const pauseButton = document.querySelector('#pomodoro-pause');
+
+//   let workSessionDuration = WORK_SESSION_DURATION;
+//   let breakSessionDuration = BREAK_SESSION_DURATION;
+
+//   let countdown = 0; // variable to set/clear intervals
+
+//   let currentTimerSession = workSessionDuration;
+
+//   let isPaused = false;
+
+//   startButton.addEventListener('click', () => {
+//     // displaySessionLog();
+//     stopCurrentTimer();
+//     currentTimerSession = workSessionDuration;
+//     workSessionTimer(workSessionDuration);
+//     stopButton.classList.remove('hidden');
+//     pauseButton.classList.remove('hidden');
+//     startButton.classList.add('hidden');
+//   });
+
+//   stopButton.addEventListener('click', () => {
+//     // displaySessionLog();
+//     stopCurrentTimer();
+//     currentTimerSession = breakSessionDuration;
+//     breakSessionTimer(breakSessionDuration);
+//     stopButton.classList.add('hidden');
+//     pauseButton.classList.add('hidden');
+//     startButton.classList.remove('hidden');
+//   })
+
+//   pauseButton.addEventListener('click', () => {
+//     pauseButton.classList.add('hidden');
+//     startButton.classList.remove('hidden');
+//     stopButton.classList.remove('hidden');
+//     // displaySessionLog();
+//     isPaused = true;
+    
+//   })
+
+// });
