@@ -13,24 +13,9 @@ window.addEventListener("load", function () {
   const startBtn = document.querySelector("#start-btn");
   const resetBtn = document.querySelector("#reset-btn");
 
-  startBtn.addEventListener('click', () => {  
-    clearInterval(countdown);  
-    isPaused = !isPaused;  
-    if (!isPaused) {    
-      countdown = setInterval(timer, 1000);  
-    }
-  });
-
-  resetBtn.addEventListener('click', () => {  
-    clearInterval(countdown);  
-    seconds = workTime * 60;  
-    countdown = 0;  
-    isPaused = true;  
-    isBreak = true;
-  });
-
   const timer = () => {  
-    seconds--;  
+    console.log(seconds--);
+    // seconds--;  
     if (seconds < 0) {    
       clearInterval(countdown);     
       seconds = (isBreak ? breakTime : workTime) * 60;    
@@ -38,9 +23,34 @@ window.addEventListener("load", function () {
       countdown = setInterval(timer, 1000);  
     }
   };
+
+  startBtn.addEventListener('click', () => {  
+    clearInterval(countdown);  
+    isPaused = !isPaused;  
+    if (!isPaused) {    
+      countdown = setInterval(timer, 1000);  
+    }
+    buttonDisplay();
+  });
+
+  // resetBtn.addEventListener('click', () => {  
+  //   clearInterval(countdown);  
+  //   seconds = workTime * 60;  
+  //   countdown = 0;  
+  //   isPaused = true;  
+  //   isBreak = true;
+  // });
+
+  const buttonDisplay = () => {
+    if (isPaused && countdown === 0) {
+      startBtn.textContent = "START";
+    } else if (isPaused && countdown !== 0) {
+      startBtn.textContent = "Continue"; 
+    } else {
+      startBtn.textContent = "Pause";
+    }
+  }
 });
-
-
 
 
 
