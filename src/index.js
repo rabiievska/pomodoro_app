@@ -49,11 +49,11 @@ window.addEventListener("load", function () {
   });
 
   const buttonDisplay = () => {
-    if (isPaused && countdown === 0) {
+    if (isPaused && countdown === 0) { // beginning/ first iteration
       startBtn.innerHTML = "START";
-    } else if (isPaused && countdown !== 0) {
+    } else if (isPaused && countdown !== 0) { // timer is running
       startBtn.innerHTML = "Continue"; 
-    } else {
+    } else { // not paused, timer is running
       startBtn.innerHTML = "Pause";
     }
   }
