@@ -14,7 +14,7 @@ window.addEventListener("load", function () {
   const resetBtn = document.querySelector("#reset-btn");
 
   const timer = () => {  
-    seconds--;  
+    seconds--;  // updates the global variable
     displayTime();
     if (seconds < 0) {    
       clearInterval(countdown);     
@@ -26,8 +26,8 @@ window.addEventListener("load", function () {
 
   const displayTime = () => {
     let secondsLeft = seconds % 60; // % is often used for timers 
-    console.log(secondsLeft);
-    timerDisplay.innerHTML = secondsLeft;
+    let mins = Math.floor(seconds / 60); // takes seconds from the global scope 
+    timerDisplay.innerHTML = `${mins}:${secondsLeft}`;
   };
 
   startBtn.addEventListener('click', () => {  
