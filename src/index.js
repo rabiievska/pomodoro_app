@@ -8,20 +8,26 @@ window.addEventListener("load", function () {
   let isBreak = true;
   let isPaused = true;
 
-  const status = document.querySelector("#status");
+  const status = document.querySelector("#status"); // work or break – if work, then it displays "keep working", if break – "take a break"
   const timerDisplay = document.querySelector("#timer-display");
   const startBtn = document.querySelector("#start-btn");
   const resetBtn = document.querySelector("#reset-btn");
 
   const timer = () => {  
-    console.log(seconds--);
-    // seconds--;  
+    seconds--;  
+    displayTime();
     if (seconds < 0) {    
       clearInterval(countdown);     
       seconds = (isBreak ? breakTime : workTime) * 60;    
       isBreak = !isBreak;
       countdown = setInterval(timer, 1000);  
     }
+  };
+
+  const displayTime = () => {
+    let secondsLeft = seconds % 60; // % is often used for timers 
+    console.log(secondsLeft);
+    timerDisplay.innerHTML = secondsLeft;
   };
 
   startBtn.addEventListener('click', () => {  
@@ -33,13 +39,13 @@ window.addEventListener("load", function () {
     buttonDisplay();
   });
 
-  // resetBtn.addEventListener('click', () => {  
-  //   clearInterval(countdown);  
-  //   seconds = workTime * 60;  
-  //   countdown = 0;  
-  //   isPaused = true;  
-  //   isBreak = true;
-  // });
+  resetBtn.addEventListener('click', () => {  
+    clearInterval(countdown);  
+    seconds = workTime * 60;  
+    countdown = 0;  
+    isPaused = true;  
+    isBreak = true;
+  });
 
   const buttonDisplay = () => {
     if (isPaused && countdown === 0) {
