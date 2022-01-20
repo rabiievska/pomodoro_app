@@ -2,7 +2,8 @@
 window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
-  let seconds = 1500; // seconds left on the clock
+  // let seconds = 1500; // seconds left on the clock
+  let seconds = 660; // test working time
   let workTime = 25;
   let breakTime = 5;
   let isBreak = true;
@@ -27,7 +28,7 @@ window.addEventListener("load", function () {
   const displayTime = () => {
     let secondsLeft = seconds % 60; // % is often used for timers 
     let mins = Math.floor(seconds / 60); // takes seconds from the global scope 
-    timerDisplay.innerHTML = `${mins}:${secondsLeft}`;
+    timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
   };
 
   startBtn.addEventListener('click', () => {  
