@@ -50,11 +50,11 @@ window.addEventListener("load", function () {
 
   const buttonDisplay = () => {
     if (isPaused && countdown === 0) {
-      startBtn.textContent = "START";
+      startBtn.innerHTML = "START";
     } else if (isPaused && countdown !== 0) {
-      startBtn.textContent = "Continue"; 
+      startBtn.innerHTML = "Continue"; 
     } else {
-      startBtn.textContent = "Pause";
+      startBtn.innerHTML = "Pause";
     }
   }
 });
