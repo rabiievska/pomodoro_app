@@ -57,6 +57,29 @@ window.addEventListener("load", function () {
       startBtn.innerHTML = "Pause";
     }
   }
+
+  let increment = 5;
+
+  const timerEvents = () => {
+    document.querySelector('#work-plus').addEventListener('click', () => {
+      workTime = workTime + increment;
+      console.log(workTime);
+    })
+    document.querySelector('#work-minus').addEventListener('click', () => {
+      workTime = workTime - increment;
+      console.log(workTime);
+    })
+    document.querySelector('#break-plus').addEventListener('click', () => {
+      breakTime = breakTime + increment;
+      console.log(breakTime);
+    })
+    document.querySelector('#break-minus').addEventListener('click', () => {
+      breakTime = breakTime - increment;
+      console.log(breakTime);
+    })
+  };
+
+  timerEvents();
 });
 
 

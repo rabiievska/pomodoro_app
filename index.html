@@ -22,25 +22,21 @@
           <button id="start-btn" class="start-btn">START</button>
         </div>
       </div>
-      <!-- <div id="pomodoro-clock-actions" class="pomodoro-clock-actions">
-        <div class="pomodoro-input">
-          <label>Work Duration</label>
-          <input
-            name="input-work-duration"
-            id="input-work-duration"
-            type="number"
-          />
-        </div> -->
-        <button id="reset-btn" class="reset-btn">RESET</button>
-        <!-- <div class="pomodoro-input">
-          <label>Break Duration</label>
-          <input
-            name="input-break-duration"
-            id="input-break-duration"
-            type="number"
-          />
+      <div id="pomodoro-clock-actions" class="pomodoro-clock-actions">
+        <div class="work">
+          <p>Work Duration</p>
+          <button class="plus" id="work-plus">+</button>
+          <div><span id="break-min">5</span> mins</div>
+          <button class="minus" id="work-minus">-</button>
         </div>
-      </div> -->
+        <button id="reset-btn" class="reset-btn">RESET</button>
+        <div class="break">
+          <p>Break Duration</p>
+          <button class="plus" id="break-plus">+</button>
+          <div><span id="break-min">5</span> mins</div>
+          <button class="minus" id="break-minus">-</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
