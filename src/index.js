@@ -9,10 +9,12 @@ window.addEventListener("load", function () {
   let isBreak = true;
   let isPaused = true;
 
-  const status = document.querySelector("#status"); // work or break – if work, then it displays "keep working", if break – "take a break"
+  const status = document.querySelector("#pomodoro-status"); // work or break – if work, then it displays "keep working", if break – "take a break"
   const timerDisplay = document.querySelector("#timer-display");
   const startBtn = document.querySelector("#start-btn");
   const resetBtn = document.querySelector("#reset-btn");
+  const workMin = document.querySelector("#work-min");
+  const breakMin = document.querySelector("#break-min");
 
   const timer = () => {  
     seconds--;  // updates the global variable
@@ -79,7 +81,15 @@ window.addEventListener("load", function () {
     })
   };
 
-  timerEvents();
+  const updateHTML = () => {
+    displayTime();
+    timerEvents();
+    isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!";
+    workMin.innerHTML = workTime;
+    breakMin.innerHTML = breakTime;  
+  };
+
+  updateHTML();
 });
 
 
