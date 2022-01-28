@@ -2,8 +2,7 @@
 window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
-  // let seconds = 1500; // seconds left on the clock
-  let seconds = 660; // test working time
+  let seconds = 1500; // seconds left on the clock
   let workTime = 25;
   let breakTime = 5;
   let isBreak = true;
@@ -33,6 +32,9 @@ window.addEventListener("load", function () {
     countdown = 0;  
     isPaused = true;  
     isBreak = true;
+    displayTime();
+    buttonDisplay();
+    updateHTML();
   });
 
   /* TIMER - HANDLES COUNTDOWN */
