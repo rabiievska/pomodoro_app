@@ -1,8 +1,6 @@
 
 window.addEventListener("load", function () {
 
-  // seconds variable is nor updating when click the start button
-
   let countdown = 0; // variable to set/clear intervals
   // let seconds = 1500; // seconds left on the clock
   let seconds = 660; // test working time
@@ -92,6 +90,9 @@ window.addEventListener("load", function () {
     displayTime();
     isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!";
     workMin.innerHTML = workTime;
+    if (breakTime <= 0) {
+      return;
+    }
     breakMin.innerHTML = breakTime;  
   };
 
