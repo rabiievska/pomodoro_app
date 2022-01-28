@@ -16,8 +16,8 @@
         <img src="../pomodoro_app/assets/images/tomato.png" alt="tomato">
       </div>
       <div id="pomodoro-clock" class="pomodoro-clock">
-        <div id="pomodoro-status" class="pomodoro-status"></div>
-        <div id="timer-display" class="timer-display"></div>
+        <div id="pomodoro-status" class="pomodoro-status">Keep Working</div>
+        <div id="timer-display" class="timer-display">25:00</div>
         <div id="pomodoro-clock-actions">
           <button id="start-btn" class="start-btn">START</button>
         </div>
@@ -29,7 +29,9 @@
           <div><span id="work-min">5</span> mins</div>
           <button class="minus" id="work-minus">-</button>
         </div>
-        <button id="reset-btn" class="reset-btn">RESET</button>
+        <div class="reset-btn-container">
+          <button id="reset-btn" class="reset-btn">RESET</button>
+        </div>
         <div class="break">
           <p>Break Duration</p>
           <button class="plus" id="break-plus">+</button>

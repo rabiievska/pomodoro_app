@@ -1,6 +1,8 @@
 
 window.addEventListener("load", function () {
 
+  // seconds variable is nor updating when click the start button
+
   let countdown = 0; // variable to set/clear intervals
   // let seconds = 1500; // seconds left on the clock
   let seconds = 660; // test working time
@@ -16,27 +18,12 @@ window.addEventListener("load", function () {
   const workMin = document.querySelector("#work-min");
   const breakMin = document.querySelector("#break-min");
 
-  const timer = () => {  
-    seconds--;  // updates the global variable
-    displayTime();
-    if (seconds < 0) {    
-      clearInterval(countdown);     
-      seconds = (isBreak ? breakTime : workTime) * 60;    
-      isBreak = !isBreak;
-      countdown = setInterval(timer, 1000);  
-    }
-  };
-
-  const displayTime = () => {
-    let secondsLeft = seconds % 60; // % is often used for timers 
-    let mins = Math.floor(seconds / 60); // takes seconds from the global scope 
-    timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
-  };
-
+  /* EVENT LISTENERS FOR START AND RESET BUTTONS */
   startBtn.addEventListener('click', () => {  
     clearInterval(countdown);  
     isPaused = !isPaused;  
-    if (!isPaused) {    
+    if (!isPaused) {  
+      seconds = workTime * 60;  
       countdown = setInterval(timer, 1000);  
     }
     buttonDisplay();
@@ -50,6 +37,47 @@ window.addEventListener("load", function () {
     isBreak = true;
   });
 
+  /* TIMER - HANDLES COUNTDOWN */
+  const timer = () => {  
+    seconds--;  // updates the global variable
+    displayTime();
+    if (seconds < 0) {    
+      clearInterval(countdown);     
+      seconds = (isBreak ? breakTime : workTime) * 60;    
+      isBreak = !isBreak;
+      countdown = setInterval(timer, 1000);  
+    }
+  };
+
+  /* UPDATE WORK AND BREAK TIMES */
+  let increment = 5;
+
+  const timerEvents = () => {
+    document.querySelector('#work-plus').addEventListener('click', () => {
+      workTime = workTime + increment;
+      updateHTML();
+    })
+    document.querySelector('#work-minus').addEventListener('click', () => {
+      workTime = workTime - increment;
+      updateHTML();
+    })
+    document.querySelector('#break-plus').addEventListener('click', () => {
+      breakTime = breakTime + increment;
+      updateHTML();
+    })
+    document.querySelector('#break-minus').addEventListener('click', () => {
+      breakTime = breakTime - increment;
+      updateHTML();
+    })
+  };
+
+  /* UPDATE HTML CONTENT */
+  const displayTime = () => {
+    let secondsLeft = seconds % 60; // % is often used for timers 
+    let mins = Math.floor(seconds / 60); // takes seconds from the global scope 
+    timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
+  };
+
   const buttonDisplay = () => {
     if (isPaused && countdown === 0) { // beginning/ first iteration
       startBtn.innerHTML = "START";
@@ -60,34 +88,12 @@ window.addEventListener("load", function () {
     }
   }
 
-  let increment = 5;
-
-  const timerEvents = () => {
-    document.querySelector('#work-plus').addEventListener('click', () => {
-      workTime = workTime + increment;
-      console.log(workTime);
-    })
-    document.querySelector('#work-minus').addEventListener('click', () => {
-      workTime = workTime - increment;
-      console.log(workTime);
-    })
-    document.querySelector('#break-plus').addEventListener('click', () => {
-      breakTime = breakTime + increment;
-      console.log(breakTime);
-    })
-    document.querySelector('#break-minus').addEventListener('click', () => {
-      breakTime = breakTime - increment;
-      console.log(breakTime);
-    })
-  };
-
   const updateHTML = () => {
     displayTime();
-    timerEvents();
     isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!";
     workMin.innerHTML = workTime;
     breakMin.innerHTML = breakTime;  
   };
 
-  updateHTML();
+  timerEvents();
 });
