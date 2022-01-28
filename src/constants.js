@@ -1,4 +1,0 @@
-// export const WORK_SESSION_DURATION = 1500;
-export const WORK_SESSION_DURATION = 25;
-export const BREAK_SESSION_DURATION = 10;
-// export const BREAK_SESSION_DURATION = 300;
