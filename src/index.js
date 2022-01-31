@@ -1,4 +1,3 @@
-
 window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
@@ -58,18 +57,49 @@ window.addEventListener("load", function () {
       updateHTML();
     })
     document.querySelector('#work-minus').addEventListener('click', () => {
-      workTime = workTime - increment;
-      updateHTML();
+      if (workTime > 0) {
+        workTime = workTime - increment;
+        updateHTML();
+      }
     })
     document.querySelector('#break-plus').addEventListener('click', () => {
       breakTime = breakTime + increment;
       updateHTML();
     })
     document.querySelector('#break-minus').addEventListener('click', () => {
-      breakTime = breakTime - increment;
-      updateHTML();
+      if (breakTime > 0) {
+        breakTime = breakTime - increment;
+        updateHTML();
+      }
     })
   };
+
+  // const updateWorkBreakTimer = (timerType, element, operator) => {
+  //   console.log(timerType);
+  //   console.log(element);
+  //   console.log(operator);
+  //   document.querySelector(element).addEventListener('click', () => {
+  //     let setTimer; 
+  //     timerType == 'work' ? setTimer = workTime : setTimer = breakTime;
+      
+  //     if (operator === '+') {
+  //       setTimer = setTimer + increment;
+  //       console.log(setTimer);
+  //     } else {
+  //       setTimer = setTimer - increment;
+  //       console.log(setTimer);
+  //     };
+      
+  //     updateHTML();
+  //   });
+  // };
+
+  // const timerEvents = () => {
+  //   updateWorkBreakTimer('work', '#work-plus', '+');
+  //   updateWorkBreakTimer('work', '#work-minus', '-');
+  //   updateWorkBreakTimer('break', '#break-plus', '+');
+  //   updateWorkBreakTimer('break', '#break-minus', '-');
+  // };
 
   /* UPDATE HTML CONTENT */
   const displayTime = () => {
