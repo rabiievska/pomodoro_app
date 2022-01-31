@@ -8,12 +8,21 @@
   text-align: center;
   position: relative;
 
+  @media only screen and (max-width: 600px) {
+    width: 600px;
+    padding: 0;
+  }
+
   h1 {
     font-family: 'The Nautigal', cursive;
     font-size: 80px;
     font-weight: lighter;
     padding: 0px;
     margin: 0px 10px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 40px;
+    }
   }
 
   .img-wrapper {
@@ -41,6 +50,10 @@
     font-size: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 20px;
+    }
   }
 
   .timer-display {
@@ -48,6 +61,10 @@
     font-size: 100px;
     font-weight: bold;
     margin-bottom: 10px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 40px;
+    }
   }
 
   .start-btn {
@@ -122,6 +139,10 @@
     &:active {
 	    top: 49.5%;
     }
+
+    @media only screen and (max-width: 600px) {
+      font-size: 20px;
+    }
   }
 
   .work,
@@ -129,14 +150,18 @@
     font-family: 'The Nautigal', cursive;
     font-size: 40px;
 
+    @media only screen and (max-width: 600px) {
+      font-size: 30px;
+    }
+
     p {
       background-color: #7dc0c5;
     }
 
     button {
-      width: 60px;
+      width: 50px;
       text-align: center;
-      font-size: 50px;
+      font-size: 40px;
       box-shadow: inset 0px 1px 0px 0px #ffffff;
       background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
       background-color: #f9f9f9;
