@@ -107,8 +107,6 @@ window.addEventListener("load", function () {
   };
 
   const showingAlert = () => {
-    console.log(isBreak);
-    console.log(status);
     isBreak ? alert("Take a Break!") : alert("Keep Working");
   };
 
