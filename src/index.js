@@ -44,6 +44,7 @@ window.addEventListener("load", function () {
     seconds--;  // updates the global variable
     displayTime();
     if (seconds < 0) {    
+      updateHTML();
       clearInterval(countdown); 
       showingAlert();    
       seconds = (isBreak ? breakTime : workTime) * 60;    
