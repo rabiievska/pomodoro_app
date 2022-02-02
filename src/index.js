@@ -1,9 +1,12 @@
 window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
-  let seconds = 1500; // seconds left on the clock
-  let workTime = 25;
-  let breakTime = 5;
+  let seconds = 10; // seconds left on the clock
+  let workTime = 2;
+  let breakTime = 1;
+  // let seconds = 1500; // seconds left on the clock
+  // let workTime = 25;
+  // let breakTime = 5;
   let isBreak = true;
   let isPaused = true;
 
@@ -41,7 +44,8 @@ window.addEventListener("load", function () {
     seconds--;  // updates the global variable
     displayTime();
     if (seconds < 0) {    
-      clearInterval(countdown);     
+      clearInterval(countdown); 
+      showingAlert();    
       seconds = (isBreak ? breakTime : workTime) * 60;    
       isBreak = !isBreak;
       countdown = setInterval(timer, 1000);  
@@ -74,33 +78,6 @@ window.addEventListener("load", function () {
     })
   };
 
-  // const updateWorkBreakTimer = (timerType, element, operator) => {
-  //   console.log(timerType);
-  //   console.log(element);
-  //   console.log(operator);
-  //   document.querySelector(element).addEventListener('click', () => {
-  //     let setTimer; 
-  //     timerType == 'work' ? setTimer = workTime : setTimer = breakTime;
-      
-  //     if (operator === '+') {
-  //       setTimer = setTimer + increment;
-  //       console.log(setTimer);
-  //     } else {
-  //       setTimer = setTimer - increment;
-  //       console.log(setTimer);
-  //     };
-      
-  //     updateHTML();
-  //   });
-  // };
-
-  // const timerEvents = () => {
-  //   updateWorkBreakTimer('work', '#work-plus', '+');
-  //   updateWorkBreakTimer('work', '#work-minus', '-');
-  //   updateWorkBreakTimer('break', '#break-plus', '+');
-  //   updateWorkBreakTimer('break', '#break-minus', '-');
-  // };
-
   /* UPDATE HTML CONTENT */
   const displayTime = () => {
     let secondsLeft = seconds % 60; // % is often used for timers 
@@ -120,12 +97,18 @@ window.addEventListener("load", function () {
 
   const updateHTML = () => {
     displayTime();
-    isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!";
+    isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!"; //doesn't work
     workMin.innerHTML = workTime;
     if (breakTime <= 0) {
       return;
     }
     breakMin.innerHTML = breakTime;  
+  };
+
+  const showingAlert = () => {
+    console.log(isBreak);
+    console.log(status);
+    isBreak ? alert("Take a Break!") : alert("Keep Working");
   };
 
   timerEvents();
