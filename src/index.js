@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
     buttonDisplay();
   });
 
-  resetBtn.addEventListener('click', () => {  // is not working
+  resetBtn.addEventListener('click', () => {  
     clearInterval(countdown);  
     seconds = workTime * 60;  
     countdown = 0;  
