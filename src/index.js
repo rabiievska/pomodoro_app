@@ -2,8 +2,8 @@ window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
   let seconds = 10; // seconds left on the clock
-  let workTime = 2;
-  let breakTime = 1;
+  let workTime = 1;
+  let breakTime = 0.5;
   // let seconds = 1500; // seconds left on the clock
   // let workTime = 25;
   // let breakTime = 5;
@@ -44,12 +44,12 @@ window.addEventListener("load", function () {
     seconds--;  // updates the global variable
     displayTime();
     if (seconds < 0) {    
-      updateHTML();
       clearInterval(countdown); 
       showingAlert();    
       seconds = (isBreak ? breakTime : workTime) * 60;    
       isBreak = !isBreak;
       countdown = setInterval(timer, 1000);  
+      updateHTML();
     }
   };
 
@@ -98,7 +98,7 @@ window.addEventListener("load", function () {
 
   const updateHTML = () => {
     displayTime();
-    isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!"; //doesn't work
+    isBreak ? status.innerHTML = "Keep Working" : status.innerHTML = "Take a Break!";
     workMin.innerHTML = workTime;
     if (breakTime <= 0) {
       return;
