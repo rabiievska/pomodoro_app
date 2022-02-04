@@ -107,7 +107,13 @@ window.addEventListener("load", function () {
   };
 
   const showingAlert = () => {
-    isBreak ? alert("Take a Break!") : alert("Keep Working");
+    chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
+      type: 'basic',
+      iconUrl: 'assets/images/tomato.png',
+      title: isBreak ? 'Take a break!' : 'Keep working!',
+      message: 'Sweet wishes from the best developer in the world --> Tania',
+      priority: 2
+    })
   };
 
   timerEvents();
