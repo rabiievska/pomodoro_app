@@ -43,13 +43,13 @@ window.addEventListener("load", function () {
   const timer = () => {  
     seconds--;  // updates the global variable
     displayTime();
-    if (seconds < 0) {    
+    if (seconds <= 0) {    
       clearInterval(countdown); 
-      showingAlert();    
       seconds = (isBreak ? breakTime : workTime) * 60;    
       isBreak = !isBreak;
       countdown = setInterval(timer, 1000);  
       updateHTML();
+      showingAlert();    
     }
   };
 
