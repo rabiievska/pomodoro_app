@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Hello World",
+  "name": "Pomodoro App",
   "version": "1.0.0",
-  "description": "A Hello World extension",
+  "description": "Pomodoro App",
   "icons": {
     "128": "assets/images/icon128.png",
     "48": "assets/images/icon48.png",
@@ -15,5 +15,9 @@
   "permissions": [
     "background",
     "alarms" 
-  ]
+  ],
+  "background": {
+    "scripts": ["./dist/main.js"],
+    "persistent": false
+  }
 }

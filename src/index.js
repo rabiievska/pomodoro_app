@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+// window.addEventListener("load", function () {
 
   let countdown = 0; // variable to set/clear intervals
   let seconds = 10; // seconds left on the clock
@@ -111,4 +111,4 @@ window.addEventListener("load", function () {
   };
 
   timerEvents();
-});
+// });
