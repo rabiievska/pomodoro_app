@@ -5,11 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello World</title>
-    <script src="src/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles/css/index.css" />
+    <script src="dist/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles/css/index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=The+Nautigal&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h2 id="greet">Hello World!</h2>
-    <input type="text" id="name" />
+    <div id="pomodoro-container" class="pomodoro-container">
+      <div class="img-wrapper">
+        <h1>Pomodoro Timer</h1>
+        <img src="./assets/images/tomato.png" alt="tomato">
+      </div>
+      <div id="pomodoro-clock" class="pomodoro-clock">
+        <div id="pomodoro-status" class="pomodoro-status">Keep Working</div>
+        <div id="timer-display" class="timer-display">25:00</div>
+        <div id="pomodoro-clock-actions">
+          <button id="start-btn" class="start-btn">START</button>
+        </div>
+      </div>
+      <div id="pomodoro-clock-actions" class="pomodoro-clock-actions">
+        <div class="work">
+          <p>Work Duration</p>
+          <button class="plus" id="work-plus">+</button>
+          <div><span id="work-min">25</span> mins</div>
+          <button class="minus" id="work-minus">-</button>
+        </div>
+        <div class="reset-btn-container">
+          <button id="reset-btn" class="reset-btn">RESET</button>
+        </div>
+        <div class="break">
+          <p>Break Duration</p>
+          <button class="plus" id="break-plus">+</button>
+          <div><span id="break-min">5</span> mins</div>
+          <button class="minus" id="break-minus">-</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
