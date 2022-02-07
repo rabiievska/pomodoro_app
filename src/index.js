@@ -36,6 +36,7 @@
     isBreak = true;
     displayTime();
     // startBtn.innnerHTML = buttonDisplay();
+    buttonDisplay();
     updateHTML();
   });
 
@@ -98,6 +99,10 @@
     if (isPaused && countdown === 0) { // beginning/ first iteration
       // startBtn.innerHTML = "START";
       return "START"
+
+  const buttonDisplay = () => {
+    if (isPaused && countdown === 0) { // beginning/ first iteration
+      startBtn.innerHTML = "START";
     } else if (isPaused && countdown !== 0) { // timer is running
       startBtn.innerHTML = "Continue"; 
     } else { // not paused, timer is running
@@ -138,5 +143,8 @@
     return isBreak ? 'Take a break!' : 'Keep working!';
   }
 
-  timerEvents();
+    isBreak ? alert("Take a Break!") : alert("Keep Working");
+  };
+
+timerEvents();
 // });

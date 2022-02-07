@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Pomodoro App",
   "version": "1.0.0",
-  "description": "A Pomodoro extension",
+  "description": "Pomodoro App",
   "icons": {
     "128": "./assets/images/tomato.png",
     "48": "./assets/images/tomato.png",
