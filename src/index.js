@@ -87,25 +87,17 @@ window.addEventListener("load", () => {
     timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
   };
   
-  // describe('#buttonDisplay', () => {
-  //   it('should display the correct button text', () => {
-  //     expect(buttonDisplay(true, 0)).toBe('START');
-  //     expect(buttonDisplay(true, 1)).toBe('Continue');
-  //     expect(buttonDisplay(false, 0)).toBe('Pause');
-  //   })
-  // })
-  
   // const buttonDisplay = (isPaused, countdown) => {
   const buttonDisplay = () => {
     if (isPaused && countdown === 0) { // beginning/ first iteration
       // startBtn.innerHTML = "START";
       return "START";
     } else if (isPaused && countdown !== 0) { // timer is running
-      startBtn.innerHTML = "Continue"; 
-      // return "Continue";
+      // startBtn.innerHTML = "Continue"; 
+      return "Continue";
     } else { // not paused, timer is running
-      startBtn.innerHTML = "Pause";
-      // return "Pause";
+      // startBtn.innerHTML = "Pause";
+      return "Pause";
     }
   }
   
@@ -133,14 +125,10 @@ window.addEventListener("load", () => {
     })
   };
   
-  // describe('#getNotificationMessage', () => {
-  //   it('returns "Take a break!" when it is break time', () => {
-  //     expect(getNotificationMessage(true)).toBe('Take a break!');
-  //   });
-  //   it('returns "Keep working!" when it is work time', () => {
-  //     expect(getNotificationMessage(false)).toBe('Keep working!');
-  //   })
-  // })
-  
   timerEvents();
 });
+
+window.pomodoro = {
+  getNotificationMessage,
+  buttonDisplay
+}
