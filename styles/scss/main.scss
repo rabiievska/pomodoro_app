@@ -39,10 +39,16 @@
   font-family: sans-serif;
   position: absolute;
   width: 400px;
-  top: 40%;
+  top: 45%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -45%);
   text-align: center;
+
+  @media only screen and (max-width: 600px) {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+  }
 
   .pomodoro-status {
     width: 70%;
@@ -50,10 +56,6 @@
     font-size: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
-
-    @media only screen and (max-width: 600px) {
-      font-size: 20px;
-    }
   }
 
   .timer-display {
@@ -63,7 +65,7 @@
     margin-bottom: 10px;
 
     @media only screen and (max-width: 600px) {
-      font-size: 40px;
+      font-size: 80px;
     }
   }
 
