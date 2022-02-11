@@ -87,18 +87,8 @@ window.addEventListener("load", () => {
     timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
   };
   
-  // const buttonDisplay = (isPaused, countdown) => {
-  const buttonDisplay = () => {
-    if (isPaused && countdown === 0) { // beginning/ first iteration
-      startBtn.innerHTML = "START";
-      // return "START";
-    } else if (isPaused && countdown !== 0) { // timer is running
-      startBtn.innerHTML = "Continue"; 
-      // return "Continue";
-    } else { // not paused, timer is running
-      startBtn.innerHTML = "Pause";
-      // return "Pause";
-    }
+  const buttonUpdate = (text) => {
+    startBtn.innerHTML = text;
   };
   
   const updateHTML = () => {
@@ -135,3 +125,16 @@ export const calculate = (a, b) => {
 export const getNotificationMessage = (isBreak) => {
   return isBreak ? 'Take a break!' : 'Keep working!';
 }; 
+
+export const buttonDisplay = (isPaused, countdown) => {
+  if (isPaused && countdown === 0) { // beginning/ first iteration
+    buttonUpdate("START");
+    // return "START";
+  } else if (isPaused && countdown !== 0) { // timer is running
+    buttonUpdate("Continue"); 
+    // return "Continue";
+  } else { // not paused, timer is running
+    buttonUpdate("Pause");
+    // return "Pause";
+  }
+};
