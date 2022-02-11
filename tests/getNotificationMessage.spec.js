@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-
+import {describe, expect} from '@jest/globals';
 import { getNotificationMessage } from '../src/index';
 
 describe('#getNotificationMessage', () => {
