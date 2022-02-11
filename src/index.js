@@ -1,12 +1,9 @@
 window.addEventListener("load", () => {
 
   let countdown = 0; // variable to set/clear intervals
-  let seconds = 10; // seconds left on the clock
-  let workTime = 1;
-  let breakTime = 0.5;
-  // let seconds = 1500; // seconds left on the clock
-  // let workTime = 25;
-  // let breakTime = 5;
+  let seconds = 1500; // seconds left on the clock
+  let workTime = 25;
+  let breakTime = 5;
   let isBreak = true;
   let isPaused = true;
   
