@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
       seconds = workTime * 60;  
       countdown = setInterval(timer, 1000);  
     }
-    buttonDisplay();
+    buttonUpdate(buttonDisplay(isPaused, countdown));
   });
   
   resetBtn.addEventListener('click', () => {  
@@ -35,8 +35,8 @@ window.addEventListener("load", () => {
     isPaused = true;  
     isBreak = true;
     displayTime();
-    buttonDisplay();
-    startBtn.innnerHTML = buttonDisplay();
+    buttonUpdate(buttonDisplay(isPaused, countdown));
+    startBtn.innnerHTML = buttonUpdate(buttonDisplay(isPaused, countdown));
     updateHTML();
   });
   
@@ -118,23 +118,16 @@ window.addEventListener("load", () => {
   timerEvents();
 });
 
-export const calculate = (a, b) => {
-  return a + b;
-};
-
 export const getNotificationMessage = (isBreak) => {
   return isBreak ? 'Take a break!' : 'Keep working!';
 }; 
 
 export const buttonDisplay = (isPaused, countdown) => {
   if (isPaused && countdown === 0) { // beginning/ first iteration
-    buttonUpdate("START");
-    // return "START";
+    return "START";
   } else if (isPaused && countdown !== 0) { // timer is running
-    buttonUpdate("Continue"); 
-    // return "Continue";
+    return "Continue";
   } else { // not paused, timer is running
-    buttonUpdate("Pause");
-    // return "Pause";
+    return "Pause";
   }
 };
