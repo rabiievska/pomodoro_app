@@ -99,7 +99,7 @@ window.addEventListener("load", () => {
       startBtn.innerHTML = "Pause";
       // return "Pause";
     }
-  }
+  };
   
   const updateHTML = () => {
     displayTime();
@@ -110,33 +110,28 @@ window.addEventListener("load", () => {
     }
     breakMin.innerHTML = breakTime;  
   };
-
-  const getNotificationMessage = (isBreak) => {
-    return isBreak ? 'Take a break!' : 'Keep working!';
-  };
   
   const showingAlert = () => {
-    // chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
-    //   type: 'basic',
-    //   iconUrl: 'assets/images/tomato.png',
-    //   title: getNotificationMessage(isBreak),
-    //   message: 'Timer update!',
-    //   priority: 2
-    // })
-    calculate();
-    alert("BEEP!")
+    if (typeof chrome?.notifications?.create === "function") {
+      chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
+        type: 'basic',
+        iconUrl: 'assets/images/tomato.png',
+        title: getNotificationMessage(isBreak),
+        message: 'Timer update!',
+        priority: 2
+      })
+    } else {
+      alert(getNotificationMessage(isBreak))
+    }
   };
-
-  const calculate = (a, b) => {
-    return a + b;
-  };
-
-  getNotificationMessage();
-
   
   timerEvents();
 });
 
-// export const calculate = (a, b) => {
-//   return a + b;
-// };
+export const calculate = (a, b) => {
+  return a + b;
+};
+
+export const getNotificationMessage = (isBreak) => {
+  return isBreak ? 'Take a break!' : 'Keep working!';
+}; 
