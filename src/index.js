@@ -1,12 +1,9 @@
 window.addEventListener("load", () => {
 
   let countdown = 0; // variable to set/clear intervals
-  let seconds = 10; // seconds left on the clock
-  let workTime = 1;
-  let breakTime = 0.5;
-  // let seconds = 1500; // seconds left on the clock
-  // let workTime = 25;
-  // let breakTime = 5;
+  let seconds = 1500; // seconds left on the clock
+  let workTime = 25;
+  let breakTime = 5;
   let isBreak = true;
   let isPaused = true;
   
@@ -25,7 +22,7 @@ window.addEventListener("load", () => {
       seconds = workTime * 60;  
       countdown = setInterval(timer, 1000);  
     }
-    buttonDisplay();
+    buttonUpdate(buttonDisplay(isPaused, countdown));
   });
   
   resetBtn.addEventListener('click', () => {  
@@ -35,8 +32,8 @@ window.addEventListener("load", () => {
     isPaused = true;  
     isBreak = true;
     displayTime();
-    buttonDisplay();
-    startBtn.innnerHTML = buttonDisplay();
+    buttonUpdate(buttonDisplay(isPaused, countdown));
+    startBtn.innnerHTML = buttonUpdate(buttonDisplay(isPaused, countdown));
     updateHTML();
   });
   
@@ -87,27 +84,9 @@ window.addEventListener("load", () => {
     timerDisplay.innerHTML = `${mins}:${secondsLeft < 10 ? 0 : ''}${secondsLeft}`; // is adding 0 before secondsLeft, if there are less then 10 seconds left
   };
   
-  // describe('#buttonDisplay', () => {
-  //   it('should display the correct button text', () => {
-  //     expect(buttonDisplay(true, 0)).toBe('START');
-  //     expect(buttonDisplay(true, 1)).toBe('Continue');
-  //     expect(buttonDisplay(false, 0)).toBe('Pause');
-  //   })
-  // })
-  
-  // const buttonDisplay = (isPaused, countdown) => {
-  const buttonDisplay = () => {
-    if (isPaused && countdown === 0) { // beginning/ first iteration
-      // startBtn.innerHTML = "START";
-      return "START";
-    } else if (isPaused && countdown !== 0) { // timer is running
-      startBtn.innerHTML = "Continue"; 
-      // return "Continue";
-    } else { // not paused, timer is running
-      startBtn.innerHTML = "Pause";
-      // return "Pause";
-    }
-  }
+  const buttonUpdate = (text) => {
+    startBtn.innerHTML = text;
+  };
   
   const updateHTML = () => {
     displayTime();
@@ -118,29 +97,34 @@ window.addEventListener("load", () => {
     }
     breakMin.innerHTML = breakTime;  
   };
-
-  const getNotificationMessage = isBreak => {
-    return isBreak ? 'Take a break!' : 'Keep working!';
-  };
   
   const showingAlert = () => {
-    chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
-      type: 'basic',
-      iconUrl: 'assets/images/tomato.png',
-      title: getNotificationMessage(isBreak),
-      message: 'Timer update!',
-      priority: 2
-    })
+    if (typeof chrome?.notifications?.create === "function") {
+      chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
+        type: 'basic',
+        iconUrl: 'assets/images/tomato.png',
+        title: getNotificationMessage(isBreak),
+        message: 'Timer update!',
+        priority: 2
+      })
+    } else {
+      alert(getNotificationMessage(isBreak))
+    }
   };
-  
-  // describe('#getNotificationMessage', () => {
-  //   it('returns "Take a break!" when it is break time', () => {
-  //     expect(getNotificationMessage(true)).toBe('Take a break!');
-  //   });
-  //   it('returns "Keep working!" when it is work time', () => {
-  //     expect(getNotificationMessage(false)).toBe('Keep working!');
-  //   })
-  // })
   
   timerEvents();
 });
+
+export const getNotificationMessage = (isBreak) => {
+  return isBreak ? 'Take a break!' : 'Keep working!';
+}; 
+
+export const buttonDisplay = (isPaused, countdown) => {
+  if (isPaused && countdown === 0) { // beginning/ first iteration
+    return "START";
+  } else if (isPaused && countdown !== 0) { // timer is running
+    return "Continue";
+  } else { // not paused, timer is running
+    return "Pause";
+  }
+};
