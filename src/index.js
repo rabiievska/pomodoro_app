@@ -90,14 +90,14 @@ window.addEventListener("load", () => {
   // const buttonDisplay = (isPaused, countdown) => {
   const buttonDisplay = () => {
     if (isPaused && countdown === 0) { // beginning/ first iteration
-      // startBtn.innerHTML = "START";
-      return "START";
+      startBtn.innerHTML = "START";
+      // return "START";
     } else if (isPaused && countdown !== 0) { // timer is running
-      // startBtn.innerHTML = "Continue"; 
-      return "Continue";
+      startBtn.innerHTML = "Continue"; 
+      // return "Continue";
     } else { // not paused, timer is running
-      // startBtn.innerHTML = "Pause";
-      return "Pause";
+      startBtn.innerHTML = "Pause";
+      // return "Pause";
     }
   }
   
@@ -111,24 +111,32 @@ window.addEventListener("load", () => {
     breakMin.innerHTML = breakTime;  
   };
 
-  const getNotificationMessage = isBreak => {
+  const getNotificationMessage = (isBreak) => {
     return isBreak ? 'Take a break!' : 'Keep working!';
   };
   
   const showingAlert = () => {
-    chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
-      type: 'basic',
-      iconUrl: 'assets/images/tomato.png',
-      title: getNotificationMessage(isBreak),
-      message: 'Timer update!',
-      priority: 2
-    })
+    // chrome.notifications.create(`pomodoro_alert_${Math.random()}`, {
+    //   type: 'basic',
+    //   iconUrl: 'assets/images/tomato.png',
+    //   title: getNotificationMessage(isBreak),
+    //   message: 'Timer update!',
+    //   priority: 2
+    // })
+    calculate();
+    alert("BEEP!")
   };
+
+  const calculate = (a, b) => {
+    return a + b;
+  };
+
+  getNotificationMessage();
+
   
   timerEvents();
 });
 
-window.pomodoro = {
-  getNotificationMessage,
-  buttonDisplay
-}
+// export const calculate = (a, b) => {
+//   return a + b;
+// };
