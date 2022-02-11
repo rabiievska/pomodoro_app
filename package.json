@@ -26,5 +26,7 @@
   },
   "globals": {
     "window": {}
-  }
+  },
+  "testFileExtensions": ["es6", "js"],
+  "moduleFileExtensions": ["js", "json", "es6"]
 }
